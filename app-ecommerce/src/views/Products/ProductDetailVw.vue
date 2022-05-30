@@ -2,32 +2,31 @@
   <div>
     <Navbar />
     <header class="header">
-      <h1>Productos</h1>
+      <h1>Detalle</h1>
     </header>
     <div class="contenedorProductos">
-      <Product
-        v-for="(item, i) in products"
-        :key="i"
-        :id="item.id"
-        :title="item.title"
-        :price="item.price"
-        :thumbnail="item.thumbnail"
-        @add-cart="$emit('add-cart', $event)"
+      <ProductDetail
+        :id="GetProduct.id"
+        :title="GetProduct.title"
+        :description="GetProduct.description"
+        :price="GetProduct.price"
+        :thumbnail="GetProduct.thumbnail"
       >
-      </Product>
-      </div>
+      </ProductDetail>
+    </div>
   </div>
 </template>
 
 <script>
 import mixins from "../../mixins/mixins.js";
 import Navbar from "../../components/layout/Navbar.vue";
-import Product from "../../components/products/Product.vue";
+import ProductDetail from "../../components/products/ProductDetail.vue";
 
 export default {
-  name: "Products",
+  name: "ProductDetailVw",
   components: {
-    Navbar, Product
+    Navbar,
+    ProductDetail,
   },
   data() {
     return {
@@ -35,6 +34,12 @@ export default {
     };
   },
   mixins: [mixins],
+  computed: {
+    GetProduct() {
+      let id = this.$route.params.id.toString();
+      return this.products.find((product) => product.id === id);
+    },
+  },
   mounted() {
     this.GetProductsWithAxios();
   },

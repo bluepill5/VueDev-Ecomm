@@ -5,7 +5,10 @@
         <img :alt="title" :src="thumbnail" class="imagenProductoGrilla" />
       </div>
       <h3>{{ title }}</h3>
-      <div>$ {{ price }}</div>
+      <div>
+            <p>{{ description }}</p>
+      </div>
+      <div class="price-style">$ {{ price }}</div>
       <div class="container-buttons">
         <button
           type="button"
@@ -14,11 +17,9 @@
         >
           Agregar
         </button>
-        <button type="button" class="botonComprar">
-          <router-link class="botonRouter" :to="{ name: 'productoId', params: { id: id } }">
-            Ver Detalles
-          </router-link>
-        </button>
+        <div>
+            <!-- {{>add}} -->
+        </div>
       </div>
     </div>
   </div>
@@ -31,6 +32,10 @@ export default {
     title: {
       type: String,
       required: true,
+    },
+    description: {
+      type: String,
+      required: true
     },
     price: {
       type: String,

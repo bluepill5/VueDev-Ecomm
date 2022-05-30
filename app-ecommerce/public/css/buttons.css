@@ -9,6 +9,16 @@
     cursor: pointer;
 }
 
+.botonRouter {
+    text-decoration: none;
+    color: black;
+}
+
+.botonRouter:hover {
+    background-color: #d4de07d0;
+    color: black;
+}
+
 .botonComprar:hover {
     background-color: #d4de07d0;
 }

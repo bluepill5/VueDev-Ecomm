@@ -12,7 +12,6 @@
         :title="item.title"
         :price="item.price"
         :thumbnail="item.thumbnail"
-        @add-cart="$emit('add-cart', $event)"
       >
       </Product>
       </div>
@@ -25,7 +24,7 @@ import Navbar from "../../components/layout/Navbar.vue";
 import Product from "../../components/products/Product.vue";
 
 export default {
-  name: "Products",
+  name: "ProductsVw",
   components: {
     Navbar, Product
   },

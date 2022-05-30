@@ -10,6 +10,12 @@ const routes = [
         component: () => import('../views/Home/Home.vue'),
     },
     {
+        path: '/productos/:id',
+        name: 'productoId',
+        component: () => import('../views/Products/ProductDetailVw.vue'),
+        params: true
+    },
+    {
         path: '/productos',
         name: 'productos',
         component: () => import('../views/Products/ProductsVw.vue'),
