@@ -72,14 +72,9 @@
 
 export default {
   name: 'Navbar',
-  data() {
-    return {
-      // cart: [],
-      get cart() {
-         return JSON.parse(localStorage.getItem('cart')) || [];
-      },
-    }
-  },
+  props: {
+
+  }
 };
 </script>
 

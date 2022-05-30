@@ -9,7 +9,7 @@
             <p>{{ description }}</p>
       </div>
       <div class="price-style">$ {{ price }}</div>
-      <div class="container-buttons">
+      <div class="container-buttons-col">
         <button
           type="button"
           class="botonComprar"
@@ -17,17 +17,20 @@
         >
           Agregar
         </button>
-        <div>
-            <!-- {{>add}} -->
-        </div>
+        <Add />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Add from '../ui/Add.vue';
+
 export default {
   name: "ProductComponent",
+  components: {
+    Add,
+  },
   props: {
     title: {
       type: String,
