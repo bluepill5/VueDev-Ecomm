@@ -20,7 +20,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/productos">
             <i class="fa-solid fa-file-lines"></i>
-            LISTADO <span class="fas fa-solid fa-file-code"></span>
+            PRODUCTOS <span class="fas fa-solid fa-file-code"></span>
           </a>
         </li>
       </ul>
@@ -39,7 +39,7 @@
           <a href="/carrito" class="nav-link">
             <span class="fas fa-shopping-cart"></span>
             Mi carrito
-            <span class="badge badge-pill badge-secondary">1</span>
+            <span class="badge badge-pill badge-secondary">{{ $store.getters.getCartItems.length }}</span>
           </a>
         </li>
         <li class="navbar-item">
@@ -69,7 +69,18 @@
 </template>
 
 <script>
-export default {};
+
+export default {
+  name: 'Navbar',
+  data() {
+    return {
+      // cart: [],
+      get cart() {
+         return JSON.parse(localStorage.getItem('cart')) || [];
+      },
+    }
+  },
+};
 </script>
 
 <style>

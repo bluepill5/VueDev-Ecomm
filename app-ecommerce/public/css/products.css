@@ -1,0 +1,45 @@
+.roundedImg {
+    border-radius: 50%;
+    block-size: 17%;
+    inline-size: 17%;
+}
+
+.contenedorProductos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+.grillaProducto {
+    position: relative;
+    width: 300px;
+    /* height: 250px; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.imagenDestacado {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 40px;
+}
+
+.imagenProductoGrilla {
+    max-width: 70%;
+    max-height: 100px;
+    height: 100%;
+}
+
+.grillaProducto:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7);
+}
+
+

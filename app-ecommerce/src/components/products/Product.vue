@@ -1,106 +1,68 @@
 <template>
   <div>
-      <div class="grillaProducto text-center">
-        <img
-            v-if="destacado"
-            src="../assets/images/destacado.png"
-            alt="destacado"
-            class="imagenDestacado"
-        />
-        <div>
-            <img
-                :alt="titulo"
-                :src="getImgUrl()"
-                class="imagenProductoGrilla"
-            />
-        </div>
-        <h3>{{ titulo }}</h3>
-        <div>$ {{ precio }}</div>
-        <button type="button" class="botonComprar" @click="AgregarAlCarrito()">
+    <div class="grillaProducto text-center">
+      <div>
+        <img :alt="title" :src="thumbnail" class="imagenProductoGrilla" />
+      </div>
+      <h3>{{ title }}</h3>
+      <div>$ {{ price }}</div>
+      <div class="container-buttons">
+        <button type="button" class="botonComprar" @click="$store.dispatch('updateCartItems', id)">
             Agregar
         </button>
+        <button type="button" class="botonComprar">
+            Ver Detalles
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
-    name: 'ProductComponent',
-    props: {
-        titulo: {
-            type: String,
-            required: true
-        },
-        precio: {
-            type: Number,
-            required: true
-        },
-        nombreImagen: {
-            type: String,
-            required: true
-        },
-        destacado: {
-            type: Boolean,
-        },
-        id: {
-            type: Number,
-            required: true,
-        }
+  name: "ProductComponent",
+  props: {
+    title: {
+      type: String,
+      required: true,
     },
-    mounted() {
-        // console.log(this.el);
-        // console.log(`Las propiedades de este componente son: ${this.$props}`)
-        // console.log(`Las propiedades de este componente son: ${this.$data}`)
+    price: {
+      type: String,
+      required: true,
     },
-    methods: {
-        getImgUrl() {
-            return require(`@/assets/images/${this.nombreImagen}`);
-        },
-        AgregarAlCarrito() {
-            this.$emit('agregar-al-carrito', this.id);
-        }
-    }
-}
+    thumbnail: {
+      type: String,
+      required: true,
+    },
+    id: {
+      type: String,
+      required: true,
+    },
+  },
+  computed: {
+      products() {
+          return this.$store.getters.getProducts;
+      }
+  },
+  methods: {
+    addProductToCart(id) {
+        this.$store.dispatch('updateCartItems', id);
+    },
+    AddCartLocal() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let newItem = {
+        title: this.title,
+        price: this.price,
+        qty: 1,
+      };
+      cart.push(newItem);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.$store.dispatch('updateCartItems');
+    },
+  },
+};
 </script>
 
-<style scoped>
-.grillaProducto {
-    position: relative;
-    width: 300px;
-    /* height: 250px; */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, 0.5);
-    color: black;
-    padding: 5px;
-    margin: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.imagenDestacado {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 40px;
-}
-.imagenProductoGrilla {
-    max-width: 70%;
-    max-height: 100px;
-    height: 100%;
-}
-.grillaProducto:hover {
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7);
-}
-.botonComprar {
-    background-color: #d9ff01d7;
-    width: 100px;
-    border-radius: 10px;
-    margin-top: 10px;
-    font-size: 1.1em;
-    padding: 5px 0;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-}
-.botonComprar:hover {
-    background-color: #d4de07d0;
-}
+<style>
 </style>
