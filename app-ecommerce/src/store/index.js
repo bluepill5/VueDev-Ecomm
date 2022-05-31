@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    cartItems: JSON.parse(localStorage.getItem("cart")) || [],
+    cartItems: JSON.parse(localStorage.getItem('cart')) || [],
+    logged: false,
   },
   getters: {
     getCartItems(state) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     getProducts(state) {
       return state.products;
     },
+    getLogged(state) {
+      return state.logged;
+    }
   },
   mutations: {
     update: async (state, id) => {
@@ -23,16 +27,28 @@ export default new Vuex.Store({
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         let product = products.find((item) => item.id === id);
         cart.push(product);
-        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem('cart', JSON.stringify(cart));
         state.cartItems = cart;
       } catch (error) {
         console.log(error);
       }
     },
+    loggedTrue: (state) => {
+      state.logged = true;
+    },
+    loggedFalse: (state) => {
+      state.logged = false;
+    },
   },
   actions: {
     updateCartItems: (context, id) => {
-      context.commit("update", id);
+      context.commit('update', id);
+    },
+    updateLoginTrue: (context, id) => {
+      context.commit('loggedTrue');
+    },
+    updateLoginFalse: (context, id) => {
+      context.commit('loggedFalse');
     },
   },
   modules: {},

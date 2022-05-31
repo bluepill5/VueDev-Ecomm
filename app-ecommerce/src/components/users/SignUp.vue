@@ -1,7 +1,7 @@
 <template>
   <div class="container form-style">
     <!-- Formulario -->
-    <form method="POST" action="/signup" class="form-container">
+    <form class="form-container" @submit="signup">
       <div class="form-group">
         <label for="username">Username</label>
         <input
@@ -9,6 +9,7 @@
           name="username"
           class="form-control"
           placeholder="Username"
+          v-model="username"
           required
         />
       </div>
@@ -19,6 +20,7 @@
           name="password"
           class="form-control"
           placeholder="***********"
+          v-model="password"
           required
         />
       </div>
@@ -29,6 +31,7 @@
           name="firstName"
           class="form-control"
           placeholder="firstname"
+          v-model="firstName"
           required
         />
       </div>
@@ -39,6 +42,7 @@
           name="lastName"
           class="form-control"
           placeholder="lastname"
+          v-model="lastName"
           required
         />
       </div>
@@ -49,6 +53,7 @@
           name="email"
           class="form-control"
           placeholder="email"
+          v-model="email"
           required
         />
       </div>
@@ -58,7 +63,35 @@
 </template>
 
 <script>
-export default {};
+import Api from "../../services/api.services.js";
+
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+    }
+  },
+  methods: {
+    async signup() {
+      try {
+        let user = await Api.postUser({
+          username: this.username,
+          password: this.password,
+          first_name: this.firstName,
+          last_name: this.lastName,
+          email: this.email,
+        });
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+};
 </script>
 
 <style>

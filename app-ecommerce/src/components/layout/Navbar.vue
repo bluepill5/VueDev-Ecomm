@@ -42,14 +42,16 @@
             <span class="badge badge-pill badge-secondary">{{ $store.getters.getCartItems.length }}</span>
           </a>
         </li>
-        <li class="navbar-item">
+
+
+        <li v-if="this.$store.getters.getLogged" class="navbar-item">
           <a href="/logout" class="nav-link">
             <span class="fas fa-sign-in-alt"></span>
             Logout
           </a>
         </li>
 
-        <li class="navbar-item">
+        <li v-if="!this.$store.getters.getLogged" class="navbar-item">
           <a href="/login" class="nav-link">
             <span class="fas fa-user"></span>
             Login
