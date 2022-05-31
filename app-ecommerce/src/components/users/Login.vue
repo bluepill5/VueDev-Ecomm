@@ -30,6 +30,8 @@
 
 <script>
 import Api from "../../services/api.services.js";
+import { mapState } from "vuex";
+
 export default {
   name: "Login",
   data() {
@@ -41,24 +43,27 @@ export default {
   },
   methods: {
     async login() {
+      let user = undefined;
       try {
         let users = await Api.getUsers();
-        let user = users.find(
+        user = users.find(
           (user) => (user.username === this.username) & (user.password === this.password)
         );
         if(user) {
           this.success = true;
           this.$store.dispatch('updateLoginTrue');
-          this.$router.push({ name: 'home' });
+          // this.$router.push({ name: 'home' });
         } else {
           this.success = true;
         }
-
       } catch (error) {
         console.log(error);
       }
     },
   },
+  computed: {
+		...mapState(['logged'])
+	},
 };
 </script>
 
