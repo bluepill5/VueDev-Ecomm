@@ -34,9 +34,16 @@ const routes = [
     path: "/logout",
     name: "logout",
     component: {
-      beforeRouterEnter(to, from, next) {
-        this.$store.dispatch("updateLoginFalse");
-        next({ path: '/login' });
+      beforeRouteEnter(to, from, next) {
+        next((vm) => {
+          // access to component instance via `vm`
+          if (vm.$store.state.logged) {
+            vm.$store.dispatch("updateLoginFalse");
+            next("/");
+          } else {
+            next();
+          }
+        });
       },
     },
   },

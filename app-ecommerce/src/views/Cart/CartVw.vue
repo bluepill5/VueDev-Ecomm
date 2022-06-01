@@ -30,7 +30,6 @@
               />
             </th>
             <th>
-              <!-- <a href="/productos/"> -->
               <a :href="'/productos/' + item.id">
                 {{ item.title }}
               </a>
