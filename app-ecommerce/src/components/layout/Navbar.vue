@@ -10,25 +10,9 @@
 
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/formulario">
-            <i class="fa-solid fa-file-lines"></i>
-            REGISTRAR <span class="fas fa-solid fa-file-code"></span>
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav">
-        <li class="nav-item">
           <a class="nav-link" href="/productos">
             <i class="fa-solid fa-file-lines"></i>
             PRODUCTOS <span class="fas fa-solid fa-file-code"></span>
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/productos-test">
-            <i class="fa-solid fa-file-lines"></i>
-            ALMACEN <span class="fas fa-solid fa-file-code"></span>
           </a>
         </li>
       </ul>
