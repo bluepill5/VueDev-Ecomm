@@ -24,7 +24,6 @@
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
-    {{ success }}
   </div>
 </template>
 
@@ -52,7 +51,7 @@ export default {
         if(user) {
           this.success = true;
           this.$store.dispatch('updateLoginTrue');
-          // this.$router.push({ name: 'home' });
+          this.$router.push({ name: 'home' });
         } else {
           this.success = true;
         }
