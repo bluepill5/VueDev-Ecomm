@@ -44,6 +44,8 @@
         </li>
 
 
+
+        <router-link to="/logout">Logout</router-link>
         <li v-if="this.$store.getters.getLogged" class="navbar-item">
           <a href="/logout" class="nav-link">
             <span class="fas fa-sign-in-alt"></span>
