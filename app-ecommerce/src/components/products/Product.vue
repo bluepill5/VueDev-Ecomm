@@ -53,7 +53,7 @@ export default {
   methods: {
     addProductToCart(id) {
       this.$store.dispatch("updateCartItems", id);
-    }
+    },
   },
 };
 </script>

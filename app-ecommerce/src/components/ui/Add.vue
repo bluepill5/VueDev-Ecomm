@@ -38,13 +38,16 @@ export default {
   methods: {
     upContador() {
       this.numContador = this.numContador + 1;
+      this.$emit('qty', this.numContador);
       return this.numContador;
     },
     downContador() {
       if (this.numContador === Number(1)) {
+        this.$emit('qty', this.numContador);
         return this.numContador;
       } else {
         this.numContador = this.numContador - 1;
+        this.$emit('qty', this.numContador);
         return this.numContador;
       }
     },
