@@ -18,7 +18,7 @@
       </ul>
       <ul v-if="this.$store.getters.getLogged" class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/productos">
+          <a class="nav-link" href="/admin">
             <i class="fa-solid fa-file-lines"></i>
             ADMIN <span class="fas fa-solid fa-file-code"></span>
           </a>

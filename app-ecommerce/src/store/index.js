@@ -6,6 +6,7 @@ import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  strict: true,
   state: {
     cartItems: JSON.parse(localStorage.getItem('cart')) || [],
     logged: false,
@@ -22,7 +23,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    update: async (state, id) => {
+    update: async (state, id, qty = 1) => {
       try {
         let products = await Api.getProducts();
         let cart = JSON.parse(localStorage.getItem("cart")) || [];

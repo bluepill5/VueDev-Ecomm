@@ -41,7 +41,7 @@ export default {
       return this.numContador;
     },
     downContador() {
-      if (this.numContador === Number(0)) {
+      if (this.numContador === Number(1)) {
         return this.numContador;
       } else {
         this.numContador = this.numContador - 1;

@@ -59,7 +59,7 @@
 
     </div>
 
-    <div class="col">
+    <div v-if="this.$store.getters.getCartItems.length <= 0" class="col">
       <p class="h3">Tu carrito de compras está vacío.</p>
       <a href="/productos">Seguir comprando</a>
     </div>
