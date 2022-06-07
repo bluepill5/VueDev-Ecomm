@@ -6,7 +6,7 @@ import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  strict: true,
+  // strict: true,
   state: {
     cartItems: JSON.parse(localStorage.getItem('cart')) || [],
     logged: false,
@@ -28,11 +28,23 @@ export default new Vuex.Store({
         let products = await Api.getProducts();
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         let product = products.find((item) => item.id === id);
-        cart.push(product);
+        console.log(cart);
+        cart.push({
+          ...product,
+          qty,
+        });
         localStorage.setItem('cart', JSON.stringify(cart));
         state.cartItems = cart;
       } catch (error) {
         console.log(error);
+      }
+    },
+    deleteCart: async(state) => {
+      try {
+        localStorage.removeItem('cart');
+        state.cartItems = [];
+      } catch (error) {
+        console.log(error)
       }
     },
     loggedTrue: (state) => {
@@ -45,6 +57,9 @@ export default new Vuex.Store({
   actions: {
     updateCartItems: (context, id) => {
       context.commit('update', id);
+    },
+    deleteCartItems: (context) => {
+      context.commit('deleteCart');
     },
     updateLoginTrue: (context, id) => {
       context.commit('loggedTrue');

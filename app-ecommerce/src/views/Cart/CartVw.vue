@@ -5,65 +5,77 @@
       <h1>Carrito de compras</h1>
     </header>
 
-    <div v-if="StoredCart">
-         <div class="col-8">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Precio</th>
-          </tr>
-        </thead>
-        <tbody v-for="item in StoredCart" :key="item.id">
-          <!-- cart.products -> solo hace referencia a la relacion -->
-          <tr>
-            <th>1</th>
-            <th>
-              <img
-                :src="item.thumbnail"
-                alt="Imagen del producto"
-                width="60"
-                height="60"
-              />
-            </th>
-            <th>
-              <a :href="'/productos/' + item.id">
-                {{ item.title }}
-              </a>
-              <!-- {{>remove}} -->
-            </th>
-            <th>
-              <!-- {{ this.qty }} -->
-            </th>
-            <th>
-              <span class="font-weight-bold text-danger">{{ item.price }}</span>
-            </th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col">
-      <div class="card-body">
-        <div class="font-weight-bold">
-          <!-- Subtotal ({{ session.cart.totalQty }}): -->
-          <!-- <span class="text-danger">{{ session.cart.totalPrice }}</span> -->
-        </div>
-        <div class="mt-2">
-          <a href="" class="btn btn-warning">Proceder al pago</a>
+    <div v-if="this.$store.getters.getCartItems.length > 0">
+      <div class="col-8">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio</th>
+            </tr>
+          </thead>
+          <tbody v-for="item in StoredCart" :key="item.id">
+            <!-- cart.products -> solo hace referencia a la relacion -->
+            <tr>
+              <th>1</th>
+              <th>
+                <img
+                  :src="item.thumbnail"
+                  alt="Imagen del producto"
+                  width="60"
+                  height="60"
+                />
+              </th>
+              <th>
+                <a :href="'/productos/' + item.id">
+                  {{ item.title }}
+                </a>
+                <!-- {{>remove}} -->
+              </th>
+              <th>
+                {{ item.qty }} 
+              </th>
+              <th>
+                <span class="font-weight-bold text-danger">{{
+                  item.price
+                }}</span>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col">
+          <div class="card-body">
+            <div class="font-weight-bold">
+              <!-- Subtotal ({{ session.cart.totalQty }}): -->
+              <!-- <span class="text-danger">{{ session.cart.totalPrice }}</span> -->
+            </div>
+            <div class="container-buttons">
+              <div class="mt-2">
+                <a href="" class="btn btn-warning">Proceder al pago</a>
+              </div>
+              <div class="mt-2">
+                <button
+                  type="button"
+                  class="btn btn-info d-inline"
+                  id="add"
+                  @click="deleteCart"
+                >
+                  Vaciar Carrito
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-
     </div>
 
     <div v-if="this.$store.getters.getCartItems.length <= 0" class="col">
       <p class="h3">Tu carrito de compras está vacío.</p>
       <a href="/productos">Seguir comprando</a>
     </div>
-
   </div>
 </template>
 
@@ -75,14 +87,19 @@ export default {
   components: {
     Navbar,
   },
-  computed: {
-      StoredCart() {
-          return this.$store.getters.getCartItems;
-      },
-      cartCount() {
-          return this.StoreCart.length;
+  methods: {
+    deleteCart() {
+      this.$store.dispatch("deleteCartItems");
     },
-  }
+  },
+  computed: {
+    StoredCart() {
+      return this.$store.getters.getCartItems;
+    },
+    cartCount() {
+      return this.StoreCart.length;
+    },
+  },
 };
 </script>
 
