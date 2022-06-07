@@ -13,7 +13,7 @@
         <button
           type="button"
           class="botonComprar"
-          @click="$store.dispatch('updateCartItems', id)"
+          @click="addProductToCart(id)"
         >
           Agregar
         </button>
@@ -27,7 +27,7 @@
 import Add from '../ui/Add.vue';
 
 export default {
-  name: "ProductComponent",
+  name: "ProductDetail",
   components: {
     Add,
   },
@@ -61,17 +61,6 @@ export default {
   methods: {
     addProductToCart(id) {
       this.$store.dispatch("updateCartItems", id);
-    },
-    AddCartLocal() {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      let newItem = {
-        title: this.title,
-        price: this.price,
-        qty: 1,
-      };
-      cart.push(newItem);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      this.$store.dispatch("updateCartItems");
     },
   },
 };

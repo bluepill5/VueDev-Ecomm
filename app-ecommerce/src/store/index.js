@@ -28,11 +28,11 @@ export default new Vuex.Store({
         let products = await Api.getProducts();
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         let product = products.find((item) => item.id === id);
-        console.log(cart);
         cart.push({
           ...product,
           qty,
         });
+        console.log(cart);
         localStorage.setItem('cart', JSON.stringify(cart));
         state.cartItems = cart;
       } catch (error) {

@@ -10,7 +10,7 @@
         <button
           type="button"
           class="botonComprar"
-          @click="$store.dispatch('updateCartItems', id)"
+          @click="addProductToCart(id)"
         >
           Agregar
         </button>
@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "ProductComponent",
+  name: "Product",
   props: {
     title: {
       type: String,
@@ -53,18 +53,7 @@ export default {
   methods: {
     addProductToCart(id) {
       this.$store.dispatch("updateCartItems", id);
-    },
-    AddCartLocal() {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      let newItem = {
-        title: this.title,
-        price: this.price,
-        qty: 1,
-      };
-      cart.push(newItem);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      this.$store.dispatch("updateCartItems");
-    },
+    }
   },
 };
 </script>

@@ -5,7 +5,7 @@
       <h1>Carrito de compras</h1>
     </header>
 
-    <div v-if="this.$store.getters.getCartItems.length > 0">
+    <div v-if="$store.getters.getCartItems.length > 0">
       <div class="col-8">
         <table class="table">
           <thead>
@@ -72,7 +72,8 @@
       </div>
     </div>
 
-    <div v-if="this.$store.getters.getCartItems.length <= 0" class="col">
+    <div v-if="StoredCart.length <= 0" class="col">
+      {{ cartItems }}
       <p class="h3">Tu carrito de compras está vacío.</p>
       <a href="/productos">Seguir comprando</a>
     </div>
@@ -81,6 +82,7 @@
 
 <script>
 import Navbar from "../../components/layout/Navbar.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "Cart",
@@ -96,9 +98,7 @@ export default {
     StoredCart() {
       return this.$store.getters.getCartItems;
     },
-    cartCount() {
-      return this.StoreCart.length;
-    },
+    ...mapState(['cartItems']),
   },
 };
 </script>

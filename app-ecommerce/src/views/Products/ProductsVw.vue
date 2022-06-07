@@ -36,7 +36,7 @@ export default {
   mixins: [mixins],
   mounted() {
     this.GetProductsWithAxios();
-  },
+  }
 };
 </script>
 
