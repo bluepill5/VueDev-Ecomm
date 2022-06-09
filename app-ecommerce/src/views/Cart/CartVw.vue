@@ -50,7 +50,7 @@
         <div class="col">
             <div class="card-body">
                 <div class="font-weight-bold">
-                    Subtotal ({{ $store.getters.getCartItems.length }}): <span class="text-danger">{{ $store.getters.getCartItems.length }}</span>
+                    Subtotal ({{ ItemsCount }}): <span class="text-danger">{{ SubTotal }}</span>
                 </div>
             </div>
         </div>
@@ -106,6 +106,14 @@ export default {
   computed: {
     StoredCart() {
       return this.$store.getters.getCartItems;
+    },
+    ItemsCount() {
+      let n_items = this.$store.getters.getCartItems.map(item => item.qty).reduce((val, acc) => val + acc, 0);
+      return n_items;
+    },
+    SubTotal() {
+      let subtotal = this.$store.getters.getCartItems.map(item => Number(item.price) * item.qty).reduce((val, acc) => val + acc, 0);
+      return subtotal;
     },
     ...mapState(['cartItems']),
   },
