@@ -23,7 +23,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    update: async (state, id, qty = 1) => {
+    update: async (state, vals) => {
+      let {id, qty} = vals;
+      console.log(qty);
       try {
         let products = await Api.getProducts();
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -55,8 +57,8 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    updateCartItems: (context, id) => {
-      context.commit('update', id);
+    updateCartItems: (context, vals) => {
+      context.commit('update', vals);
     },
     deleteCartItems: (context) => {
       context.commit('deleteCart');

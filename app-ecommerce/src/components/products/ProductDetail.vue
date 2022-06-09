@@ -13,7 +13,7 @@
         <button
           type="button"
           class="botonComprar"
-          @click="addProductToCart(id)"
+          @click="addProductToCart(id, 7)"
         >
           Agregar
         </button>
@@ -59,8 +59,9 @@ export default {
     },
   },
   methods: {
-    addProductToCart(id) {
-      this.$store.dispatch("updateCartItems", id);
+    addProductToCart(id, qty) {
+      let vals = { id, qty }
+      this.$store.dispatch("updateCartItems", vals);
     },
   },
 };
