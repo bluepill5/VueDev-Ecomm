@@ -46,6 +46,15 @@
             </tr>
           </tbody>
         </table>
+
+        <div class="col">
+            <div class="card-body">
+                <div class="font-weight-bold">
+                    Subtotal ({{ $store.getters.getCartItems.length }}): <span class="text-danger">{{ $store.getters.getCartItems.length }}</span>
+                </div>
+            </div>
+        </div>
+
         <div class="col">
           <div class="card-body">
             <div class="font-weight-bold">
