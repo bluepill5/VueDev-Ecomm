@@ -20,7 +20,7 @@
           <tbody v-for="item in StoredCart" :key="item.id">
             <!-- cart.products -> solo hace referencia a la relacion -->
             <tr>
-              <th>1</th>
+              <th>{{ item.id }}</th>
               <th>
                 <img
                   :src="item.thumbnail"
@@ -33,7 +33,7 @@
                 <a :href="'/productos/' + item.id">
                   {{ item.title }}
                 </a>
-                <!-- {{>remove}} -->
+                <Remove :id=item.id />
               </th>
               <th>
                 {{ item.qty }} 
@@ -91,12 +91,13 @@
 
 <script>
 import Navbar from "../../components/layout/Navbar.vue";
+import Remove from "../../components/ui/Remove.vue";
 import { mapState } from "vuex";
 
 export default {
   name: "Cart",
   components: {
-    Navbar,
+    Navbar, Remove,
   },
   methods: {
     deleteCart() {
