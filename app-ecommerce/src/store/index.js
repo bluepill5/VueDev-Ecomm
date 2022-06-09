@@ -25,7 +25,6 @@ export default new Vuex.Store({
   mutations: {
     update: async (state, vals) => {
       let {id, qty} = vals;
-      console.log(qty);
       try {
         let products = await Api.getProducts();
         let cart = JSON.parse(localStorage.getItem("cart")) || [];

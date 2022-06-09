@@ -10,14 +10,7 @@
       </div>
       <div class="price-style">$ {{ price }}</div>
       <div class="container-buttons-col">
-        <button
-          type="button"
-          class="botonComprar"
-          @click="addProductToCart(id, 7)"
-        >
-          Agregar
-        </button>
-        <Add />
+        <Add :id="id" />
       </div>
     </div>
   </div>
@@ -56,12 +49,6 @@ export default {
   computed: {
     products() {
       return this.$store.getters.getProducts;
-    },
-  },
-  methods: {
-    addProductToCart(id, qty) {
-      let vals = { id, qty }
-      this.$store.dispatch("updateCartItems", vals);
     },
   },
 };
